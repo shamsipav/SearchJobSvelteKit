@@ -1,14 +1,36 @@
 <script context="module" lang="ts">
 	export const prerender = true;
+
+	// export async function load() {
+	// 	const url = '/api/vacancies';
+ 	// 	const response = await fetch(url);
+
+	// 	return {
+	// 		status: response.status,
+ 	// 		props: {
+ 	// 			article: response.ok && (await response.json())
+ 	// 		}
+	// 	};
+	// }
+
+	export async function load() {
+        const url = 'http://localhost:3000/api/vacancies';
+        const res = await fetch(url);
+        const resJson = await res.json();
+        return {props: {resJson}};
+    }
 </script>
 
 <script lang="ts">
 	import Heading from '$lib/Heading.svelte';
-	import { vacancies } from '$lib/vacancies.js'
+	import { vacancies } from '$lib/vacancies'
 	import Vacancy from '$lib/Vacancy.svelte';
-	import { companies } from '$lib/companies.js'
+	import { companies } from '$lib/companies'
 	import FeaturedCompany from '$lib/FeaturedCompany.svelte';
 	import Button from '$lib/Button.svelte';
+
+	export let resJson: any;
+	console.log(resJson);
 
 	let vacancyList = vacancies;
 

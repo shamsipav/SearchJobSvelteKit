@@ -2,11 +2,11 @@
     import { onMount, createEventDispatcher } from 'svelte'
     import { fade, blur } from 'svelte/transition'
     
-    export let id = undefined
-    export let node = undefined
-    export let align = 'unset'
-    export let closable = true
-    export let className = ''
+    export let id = undefined;
+    export let node = undefined;
+    export let align = 'unset';
+    export let closable = true;
+    export let className = '';
 
     let visible = false
     const dispatch = createEventDispatcher()
