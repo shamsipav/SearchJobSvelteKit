@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	export const prerender = true;
+	// export const prerender = true;
 
 	// export async function load() {
 	// 	const url = '/api/vacancies';
@@ -14,37 +14,44 @@
 	// }
 
 	export async function load() {
-        const url = 'http://localhost:3000/api/vacancies';
-        const res = await fetch(url);
-        const resJson = await res.json();
-        return {props: {resJson}};
+        const getVacanciesUrl = 'http://localhost:3000/api/vacancies';
+        const getCompaniesUrl = 'http://localhost:3000/api/companies';
+
+        const getVacanciesResult = await fetch(getVacanciesUrl);
+        const getCompaniesResult = await fetch(getCompaniesUrl);
+
+        const vacancies = await getVacanciesResult.json();
+        const companies = await getCompaniesResult.json();
+
+        return {props: {vacancies, companies}};
     }
 </script>
 
 <script lang="ts">
 	import Heading from '$lib/Heading.svelte';
-	import { vacancies } from '$lib/vacancies'
 	import Vacancy from '$lib/Vacancy.svelte';
-	import { companies } from '$lib/companies'
 	import FeaturedCompany from '$lib/FeaturedCompany.svelte';
 	import Button from '$lib/Button.svelte';
 
-	export let resJson: any;
-	console.log(resJson);
+	export let vacancies: any;
+	console.log(vacancies);
 
-	let vacancyList = vacancies;
+	export let companies: any;
+	console.log(companies);
 
-	function addVacancy() {
-		vacancyList = vacancyList.concat({ 
-			id: 5,
-        	logo: "images/apple.png",
-        	title: "Apple Main Manager",
-        	name: "Apple Inc.",
-        	location: "Los Angeles",
-        	isFullTime: true,
-        	date: "April 12, 2020",
-		 });
-	}
+	// let vacancyList = vacancies;
+
+	// function addVacancy() {
+	// 	vacancyList = vacancyList.concat({ 
+	// 		id: 5,
+    //     	logo: "images/apple.png",
+    //     	title: "Apple Main Manager",
+    //     	name: "Apple Inc.",
+    //     	location: "Los Angeles",
+    //     	isFullTime: true,
+    //     	date: "April 12, 2020",
+	// 	 });
+	// }
 </script>
 
 <svelte:head>
@@ -74,12 +81,12 @@
 
 <section class="vacancies">
 	<div class="container container-sm">
-		{#each vacancyList as vacancy (vacancy.id)}
+		{#each vacancies as vacancy (vacancy.id)}
 			<Vacancy {...vacancy} />
 		{/each}
-		{#if vacancyList.length < 5}
+		<!-- {#if vacancies.length < 5}
 			<Button on:click={addVacancy} variant="show">View All Job postings (5)</Button>
-		{/if}
+		{/if} -->
 	</div>
 </section>
 

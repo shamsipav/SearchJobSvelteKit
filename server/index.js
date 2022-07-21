@@ -10,11 +10,11 @@ app.get("/healthcheck", (req, res) => {
     res.end("ok");
 });
 
-app.use("/api/vacancies", function (request, response) {
+app.get("/api/vacancies", function (request, response) {
     response.send(vacancies);
 });
 
-app.use("/api/companies", function (request, response) {
+app.get("/api/companies", function (request, response) {
     response.send(companies);
 });
 
