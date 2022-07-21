@@ -1,20 +1,9 @@
 <script context="module" lang="ts">
 	// export const prerender = true;
 
-	// export async function load() {
-	// 	const url = '/api/vacancies';
- 	// 	const response = await fetch(url);
-
-	// 	return {
-	// 		status: response.status,
- 	// 		props: {
- 	// 			article: response.ok && (await response.json())
- 	// 		}
-	// 	};
-	// }
-
 	export async function load() {
-        const getVacanciesUrl = 'http://localhost:3000/api/vacancies';
+		const amountDefault = 4;
+        const getVacanciesUrl = `http://localhost:3000/api/vacancies?amount=${amountDefault}`;
         const getCompaniesUrl = 'http://localhost:3000/api/companies';
 
         const getVacanciesResult = await fetch(getVacanciesUrl);
@@ -39,19 +28,17 @@
 	export let companies: any;
 	console.log(companies);
 
-	// let vacancyList = vacancies;
+	let amount = 8;
+	async function addVacancy() {
+        const getVacanciesUrl = `http://localhost:3000/api/vacancies?amount=${amount}`;
 
-	// function addVacancy() {
-	// 	vacancyList = vacancyList.concat({ 
-	// 		id: 5,
-    //     	logo: "images/apple.png",
-    //     	title: "Apple Main Manager",
-    //     	name: "Apple Inc.",
-    //     	location: "Los Angeles",
-    //     	isFullTime: true,
-    //     	date: "April 12, 2020",
-	// 	 });
-	// }
+        const getVacanciesResult = await fetch(getVacanciesUrl);
+        const vacanciesList = await getVacanciesResult.json();
+
+		vacancies = vacanciesList;
+
+		amount = 12;
+	}
 </script>
 
 <svelte:head>
@@ -84,9 +71,9 @@
 		{#each vacancies as vacancy (vacancy.id)}
 			<Vacancy {...vacancy} />
 		{/each}
-		<!-- {#if vacancies.length < 5}
-			<Button on:click={addVacancy} variant="show">View All Job postings (5)</Button>
-		{/if} -->
+		{#if vacancies.length < 12}
+			<Button on:click={addVacancy} variant="show">View More Job postings</Button>
+		{/if}
 	</div>
 </section>
 
