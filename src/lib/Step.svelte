@@ -21,28 +21,38 @@
         <p class="step__heading">{title}</p>
     </li>
     {#if $$slots.first}
-        <li class="step__item">
-            <slot name="first" />
+        <li class="step-wrapper">
+            <div class="step__item">
+                <slot name="first" />
+            </div>
         </li>
 	{/if}
     {#if $$slots.second}
-        <li class="step__item">
-            <slot name="second" />
+        <li class="step-wrapper">
+            <div class="step__item">
+                <slot name="second" />
+            </div>
         </li>
 	{/if}
     {#if $$slots.third}
-        <li class="step__item">
-            <slot name="third" />
+        <li class="step-wrapper">
+            <div class="step__item">
+                <slot name="third" />
+            </div>
         </li>
 	{/if}
-    {#if $$slots.four}
-        <li class="step__item">
-            <slot name="four" />
+    {#if $$slots.fourth}
+        <li class="step-wrapper">
+            <div class="step__item">
+                <slot name="fourth" />
+            </div>
         </li>
 	{/if}
-    {#if $$slots.five}
-        <li class="step__item">
-            <slot name="five" />
+    {#if $$slots.fifth}
+        <li class="step-wrapper">
+            <div class="step__item">
+                <slot name="fifth" />
+            </div>
         </li>
 	{/if}
 </ul>
@@ -56,15 +66,22 @@
         color: rgba(0, 0, 0, 1);
     }
 
-    .step::before {
+    .step-wrapper {
+        position: relative;
+    }
+
+    .step-wrapper:not(:last-child)::before {
         content: "";
         position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
+        top: 6px;
         left: 19px;
         width: 2px;
         background-color: var(--step-acccent-color);
-        height: calc(100% - 20px);
+        height: 100%;
+    }
+
+    .step-wrapper:not(:last-child) {
+        padding-bottom: 26px;
     }
 
     .step__number {
@@ -86,7 +103,7 @@
         font-size: 24px;
         line-height: 120%;
         color: #fff;
-        margin: 0px 20px 0px 0px;
+        margin-right: 20px;
     }
 
     .step__heading {
@@ -102,8 +119,6 @@
     .step__item::before {
         position: absolute;
         content: "";
-        /* top: 50%; */
-        /* transform: translateY(-50%); */
         top: 3px;
         left: 13px;
         width: 14px;
@@ -113,22 +128,29 @@
         background-color: #fff;
     }
 
-    .step__item:not(:last-child) {
-        margin: 0px 0px 26px 0px;
-    }
-
     .step__head {
+        position: relative;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        margin: 0px 0px 26px 0px;
+        margin-bottom: 26px;
         height: 44px;
     }
 
+    .step__head::before {
+        content: "";
+        position: absolute;
+        top: 40px;
+        left: 19px;
+        width: 2px;
+        background-color: var(--step-acccent-color);
+        height: 100%;
+    }
+
     .step__item {
-        padding: 0px 0px 0px 60px;
+        padding-left: 60px;
     }
 </style>

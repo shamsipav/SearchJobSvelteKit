@@ -29,7 +29,7 @@
     }
 
     .deadlines {
-        margin: 0px 0px 16px 0px;
+        margin-bottom: 16px;
     }
 
     .step__item-schedule {
@@ -37,12 +37,12 @@
     }
 
     .step__item-schedule:not(:last-child) {
-        margin: 0px 0px 20px 0px;
+        margin-bottom: 20px;
     }
 
     .step__item-schedule p {
         font-size: 14px;
-        margin: 0px 0px 10px 0px;
+        margin-bottom: 10px;
         opacity: 0.6;
     }
 
