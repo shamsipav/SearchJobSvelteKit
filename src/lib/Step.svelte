@@ -1,7 +1,9 @@
 <script lang="ts">
+    type colorType = "blue" | "red";
+
     export let num: number;
     export let title: string;
-    export let color: string;
+    export let color: colorType;
 
     let colorValue: string;
     
@@ -10,6 +12,7 @@
     } else if (color == "red") {
         colorValue = "#ef302b";
     }
+
 </script>
 
 <ul class="step" style="--color: {colorValue}">
