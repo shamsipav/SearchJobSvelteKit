@@ -7,3 +7,9 @@
     <svelte:fragment slot="second">Сроки подачи документов</svelte:fragment>
     <svelte:fragment slot="third">Цифры приёма</svelte:fragment>
 </Step>
+
+<Step num={2} title="Узнайте о поступлении" color="red">
+    <svelte:fragment slot="first">Правила приёма</svelte:fragment>
+    <svelte:fragment slot="second">Сроки подачи документов</svelte:fragment>
+    <svelte:fragment slot="third">Цифры приёма</svelte:fragment>
+</Step>
