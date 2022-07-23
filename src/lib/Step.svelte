@@ -1,21 +1,32 @@
 <script lang="ts">
     type СolorType = "blue" | "red";
+    type TextColorType = "white" | "black";
 
     export let num: number;
     export let title: string;
     export let color: СolorType;
+    export let textColor: TextColorType;
 
-    let colorValue: string;
-    
+    let colorValue: string;   
     if (color == "blue") {
         colorValue = "#1e4391";
     } else if (color == "red") {
         colorValue = "#ef302b";
     }
 
+    let textColorValue: string; 
+    let headColorValue: string;  
+    if (textColor == "white") {
+        textColorValue = "#fff";
+        headColorValue = "#fff"
+    } else if (textColor == "black") {
+        textColorValue = "#000";
+        headColorValue = "#1e4391"
+    }
+
 </script>
 
-<ul class="step" style:--step-acccent-color={colorValue}>
+<ul class="step" style="--step-accent-color: {colorValue}; --step-text-color: {textColorValue}; --step-head-color: {headColorValue};">
     <li class="step__head">
         <span class="step__number">{num}</span>
         <p class="step__heading">{title}</p>
@@ -76,7 +87,7 @@
         top: 6px;
         left: 19px;
         width: 2px;
-        background-color: var(--step-acccent-color);
+        background-color: var(--step-accent-color);
         height: 100%;
     }
 
@@ -99,7 +110,7 @@
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        background-color: var(--step-acccent-color);
+        background-color: var(--step-accent-color);
         font-size: 24px;
         line-height: 120%;
         color: #fff;
@@ -109,7 +120,8 @@
     .step__heading {
         font-size: 18px;
         line-height: 120%;
-        color: #1e4391;
+        /* color: #1e4391; */
+        color: var(--step-head-color);
     }
 
     .step__item, .step__head {
@@ -124,7 +136,7 @@
         width: 14px;
         height: 14px;
         border-radius: 50%;
-        border: 2px solid var(--step-acccent-color);
+        border: 2px solid var(--step-accent-color);
         background-color: #fff;
     }
 
@@ -146,7 +158,7 @@
         top: 40px;
         left: 19px;
         width: 2px;
-        background-color: var(--step-acccent-color);
+        background-color: var(--step-accent-color);
         height: 100%;
     }
 

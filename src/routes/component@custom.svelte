@@ -2,7 +2,7 @@
     import Step from '$lib/Step.svelte';
 </script>
 
-<Step num={1} title="Узнайте о поступлении" color="blue">
+<Step num={1} title="Узнайте о поступлении" color="blue" textColor="white">
     <svelte:fragment slot="first">
         <p class="step__item-title">Правила приёма</p>
     </svelte:fragment>
@@ -26,6 +26,7 @@
     .step__item-title {
         font-size: 16px;
         line-height: 140%;
+        color: var(--step-text-color);
     }
 
     .deadlines {
@@ -44,11 +45,12 @@
         font-size: 14px;
         margin-bottom: 10px;
         opacity: 0.6;
+        color: var(--step-text-color);
     }
 
     .step__item-schedule span {
         display: block;
         font-size: 14px;
-        color: var(--step-acccent-color);
+        color: var(--step-accent-color);
     }
 </style>
